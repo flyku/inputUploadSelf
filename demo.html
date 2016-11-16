@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>demo</title>
+    <script src="jquery.js"></script>
+    <style>
+        .u-file-btn {
+            float: left;
+            direction: ltr;
+            height: 30px;
+            overflow: hidden;
+            border-radius: 4px;
+            line-height: 30px;
+            margin-right: 10px;
+            padding: 3px 0;
+            text-align: center;
+            width: 60px;
+            background: #e8e8e8;
+            /* color:#2ea7e0; */
+            border: 1px solid #e8e8e8;
+            margin-left: 24px;
+            position: relative;
+        }
+
+        .add-left {
+            margin: 0px;
+            position: relative;
+        }
+
+        .u-file-btn input {
+            cursor: pointer;
+            text-align: right;
+            z-index: 10;
+            position: absolute;
+            top: 0px;
+            right: 0px;
+            opacity: 0;
+            filter: Alpha(opacity:0);
+            width: 60px;
+            height: 30px;
+        }
+
+        .fileName {
+            margin-left: 4px;
+            float: left;
+            height: 40px;
+            line-height: 36px;
+            min-width: 130px;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+<!--中间主题-->
+<div class="main main-bg w">
+    <div class="fl" id="">
+        <div class="u-file-c fl u-file-btn"><i class="glass-icon"></i>
+            <input type="file" id="file" name="file" aria-invalid="false" class="valid">浏览
+        </div>
+        <span class="fileName">未上传文件</span>
+    </div>
+</div>
+<script>
+    $(function(){
+       /* $('.u-file-c').addClass('u-file-btn');
+        $('.u-file-c').each(function (i,el) {
+            $(this).html($(this).html());
+        });*/
+        $('#file').on("change", function () {
+            var str = $(this).val();
+            var arr = str.split('\\'); //注split可以用字符或字符串分割
+            var my = arr[arr.length - 1]; //这就是要取得的图片名称
+            var filename = $(this).parent().parent().parent().find(".fileName");
+            var filehide = $(this).parent().parent().parent().find(".fileHide");
+            $(this).siblings(".organizationPath").val(my)  //给旁边隐藏输入框赋值 用来验证是否为空用
+            $(this).siblings(".logoPath").val(my)  //给旁边隐藏输入框赋值 用来验证是否为空用
+            filename.html(my);
+            filename.show();
+            if (filename.html() != "未上传文件") {
+                filehide.hide();
+            } else {
+                filehide.show();
+            }
+        });
+    });
+</script>
+</body>
+</html>
+</body>
+</html>
